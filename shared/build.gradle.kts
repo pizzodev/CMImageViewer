@@ -6,6 +6,9 @@ plugins {
 }
 
 kotlin {
+
+    val mokoMvvmVersion = "0.13.0"
+
     android()
 
     iosX64()
@@ -21,6 +24,9 @@ kotlin {
         framework {
             baseName = "shared"
             isStatic = true
+
+            export("dev.icerock.moko:mvvm-core:$mokoMvvmVersion")
+            export("dev.icerock.moko:mvvm-flow:$mokoMvvmVersion")
         }
         extraSpecAttributes["resources"] = "['src/commonMain/resources/**', 'src/iosMain/resources/**']"
     }
@@ -33,13 +39,18 @@ kotlin {
                 implementation(compose.material)
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
+
+                api("dev.icerock.moko:mvvm-core:$mokoMvvmVersion")
+                api("dev.icerock.moko:mvvm-flow:$mokoMvvmVersion")
             }
         }
         val androidMain by getting {
             dependencies {
-                api("androidx.activity:activity-compose:1.6.1")
+                api("androidx.activity:activity-compose:1.7.2")
                 api("androidx.appcompat:appcompat:1.6.1")
-                api("androidx.core:core-ktx:1.9.0")
+                api("androidx.core:core-ktx:1.10.1")
+
+                api("dev.icerock.moko:mvvm-flow-compose:$mokoMvvmVersion")
             }
         }
         val iosX64Main by getting
