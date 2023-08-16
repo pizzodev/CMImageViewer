@@ -5,34 +5,42 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.Button
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import getPlatformName
-import org.jetbrains.compose.resources.ExperimentalResourceApi
-import org.jetbrains.compose.resources.painterResource
 
-@OptIn(ExperimentalResourceApi::class)
 @Composable
 fun MainScreen(
     viewModel: MainScreenViewModel
 ) {
-    var greetingText = viewModel.shared;
 
-    var showImage by remember { mutableStateOf(false) }
+    //Init view model
+    viewModel.initViewModel()
+
+    val state = viewModel.mainScreenState.collectAsState().value
+
     Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
+
         Button(onClick = {
-            greetingText = "Hello, ${getPlatformName()}"
-            showImage = !showImage
+            viewModel.getPosts()
         }) {
-            Text(greetingText)
+            Text("Fetch posts")
         }
-        AnimatedVisibility(showImage) {
-            Image(
-                painterResource("compose-multiplatform.xml"),
-                null
-            )
+
+        AnimatedVisibility(
+            visible = state.status == MainScreenStatus.loading,
+        ) {
+            CircularProgressIndicator()
+        }
+
+        AnimatedVisibility(
+            visible = state.status == MainScreenStatus.loaded
+        ) {
+            Text("Hello ${getPlatformName()}");
+            Text(state.posts ?: "No data")
         }
     }
 }

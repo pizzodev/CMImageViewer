@@ -3,11 +3,13 @@ plugins {
     kotlin("native.cocoapods")
     id("com.android.library")
     id("org.jetbrains.compose")
+    kotlin("plugin.serialization") version "1.8.20"
 }
 
 kotlin {
 
     val mokoMvvmVersion = "0.13.0"
+    val ktor_version = "2.3.3"
 
     android()
 
@@ -42,6 +44,18 @@ kotlin {
 
                 api("dev.icerock.moko:mvvm-core:$mokoMvvmVersion")
                 api("dev.icerock.moko:mvvm-flow:$mokoMvvmVersion")
+
+                implementation("io.ktor:ktor-client-core:$ktor_version")
+                implementation("io.ktor:ktor-client-cio:$ktor_version")
+                implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor_version")
+                //implementation("io.ktor:ktor-client-okhttp:$ktor_version")
+
+
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
+
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
+
+
             }
         }
         val androidMain by getting {
@@ -49,14 +63,18 @@ kotlin {
                 api("androidx.activity:activity-compose:1.7.2")
                 api("androidx.appcompat:appcompat:1.6.1")
                 api("androidx.core:core-ktx:1.10.1")
-
-                api("dev.icerock.moko:mvvm-flow-compose:$mokoMvvmVersion")
+                implementation("io.ktor:ktor-client-android:$ktor_version")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
             }
         }
+
         val iosX64Main by getting
         val iosArm64Main by getting
         val iosSimulatorArm64Main by getting
         val iosMain by creating {
+            dependencies {
+                implementation("io.ktor:ktor-client-darwin:$ktor_version")
+            }
             dependsOn(commonMain)
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
