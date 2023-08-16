@@ -1,4 +1,4 @@
-package com.myapplication
+package com.pizzodev.cmposts
 
 import MainView
 import android.os.Bundle
