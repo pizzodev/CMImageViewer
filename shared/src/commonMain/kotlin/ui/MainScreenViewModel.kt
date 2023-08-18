@@ -1,13 +1,13 @@
 package ui
 
 import api.ApiClient
-import api.Post
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import kotlin.coroutines.coroutineContext
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
 data class MainScreenState(
     val status: MainScreenStatus = MainScreenStatus.default,
@@ -20,7 +20,9 @@ enum class MainScreenStatus {
     loaded
 }
 
-class MainScreenViewModel: ViewModel() {
+class MainScreenViewModel: ViewModel(), KoinComponent {
+
+    private val apiClient: ApiClient by inject()
 
     private val _mainScreenState = MutableStateFlow(MainScreenState())
     val mainScreenState: StateFlow<MainScreenState> = _mainScreenState.asStateFlow()
@@ -40,7 +42,7 @@ class MainScreenViewModel: ViewModel() {
                 status = MainScreenStatus.loading
             )
 
-            val response = ApiClient.getPosts()
+            val response = apiClient.getPosts()
 
             _mainScreenState.value = _mainScreenState.value.copy(
                 status = MainScreenStatus.loaded,

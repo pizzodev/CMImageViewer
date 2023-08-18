@@ -2,15 +2,12 @@ package api
 
 import io.ktor.client.*
 import io.ktor.client.request.*
-import kotlinx.serialization.Serializable
-
-import io.ktor.client.*
-import io.ktor.client.engine.cio.*
-import io.ktor.client.request.*
 import io.ktor.client.statement.*
+import kotlinx.serialization.Serializable
+import org.koin.core.component.KoinComponent
 
-object ApiClient {
-    private const val BASE_URL = "https://jsonplaceholder.typicode.com"
+class ApiClient: KoinComponent {
+    private val BASE_URL = "https://jsonplaceholder.typicode.com"
 
     private val httpClient = HttpClient()
 
