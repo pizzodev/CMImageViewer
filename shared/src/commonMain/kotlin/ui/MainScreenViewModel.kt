@@ -1,6 +1,6 @@
 package ui
 
-import api.ApiClient
+import api.RandomImages
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -8,10 +8,11 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
+import repo.RandomImageRepository
 
 data class MainScreenState(
     val status: MainScreenStatus = MainScreenStatus.default,
-    val posts: String? = null
+    val randomImages: RandomImages? = null
 )
 
 enum class MainScreenStatus {
@@ -22,7 +23,7 @@ enum class MainScreenStatus {
 
 class MainScreenViewModel: ViewModel(), KoinComponent {
 
-    private val apiClient: ApiClient by inject()
+    private val postRepo: RandomImageRepository by inject()
 
     private val _mainScreenState = MutableStateFlow(MainScreenState())
     val mainScreenState: StateFlow<MainScreenState> = _mainScreenState.asStateFlow()
@@ -31,22 +32,22 @@ class MainScreenViewModel: ViewModel(), KoinComponent {
         if (mainScreenState.value.status == MainScreenStatus.default) {
             _mainScreenState.value = _mainScreenState.value.copy(
                 status = MainScreenStatus.default,
-                posts = null
+                randomImages = null
             )
         }
     }
 
-    fun getPosts() {
+    fun getRandomImages() {
         viewModelScope.launch {
             _mainScreenState.value = _mainScreenState.value.copy(
                 status = MainScreenStatus.loading
             )
 
-            val response = apiClient.getPosts()
+            val response = postRepo.getRandomImages()
 
             _mainScreenState.value = _mainScreenState.value.copy(
                 status = MainScreenStatus.loaded,
-                posts = response
+                randomImages = response
             )
         }
     }

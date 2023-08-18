@@ -1,11 +1,10 @@
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
+import io.ktor.client.*
 import koin.initKoin
-import org.jetbrains.compose.resources.ExperimentalResourceApi
 import ui.MainScreen
 import ui.MainScreenViewModel
 
-@OptIn(ExperimentalResourceApi::class)
 @Composable
 fun App() {
 
@@ -17,3 +16,7 @@ fun App() {
 }
 
 expect fun getPlatformName(): String
+
+expect fun getApiClient(): HttpClient
+
+expect fun LoadImageFromUrl(randomImageUrl: String)

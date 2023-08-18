@@ -1,25 +1,29 @@
 package api
 
+import getApiClient
 import io.ktor.client.*
+import io.ktor.client.call.*
 import io.ktor.client.request.*
-import io.ktor.client.statement.*
 import kotlinx.serialization.Serializable
 import org.koin.core.component.KoinComponent
 
-class ApiClient: KoinComponent {
-    private val BASE_URL = "https://jsonplaceholder.typicode.com"
+interface ApiClient: KoinComponent {
+    val httpClient: HttpClient
 
-    private val httpClient = HttpClient()
+    suspend fun getRandomImages(): RandomImages
+}
+class ApiClientImpl: ApiClient, KoinComponent {
+    private val BASE_URL = "https://dog.ceo/api"
 
-    suspend fun getPosts(): String {
-        return httpClient.get("$BASE_URL/posts").bodyAsText()
+    override val httpClient = getApiClient()
+
+    override suspend fun getRandomImages(): RandomImages {
+        return httpClient.get("$BASE_URL/breeds/image/random/10").body()
     }
 }
 
 @Serializable
-data class Post(
-    val userId: Int,
-    val id: Int,
-    val title: String,
-    val body: String
+data class RandomImages(
+    val message: List<String>,
+    val status: String
 )

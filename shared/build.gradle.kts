@@ -48,7 +48,6 @@ kotlin {
                 implementation("io.ktor:ktor-client-core:$ktor_version")
                 implementation("io.ktor:ktor-client-cio:$ktor_version")
                 implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor_version")
-                //implementation("io.ktor:ktor-client-okhttp:$ktor_version")
 
 
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
@@ -57,6 +56,13 @@ kotlin {
 
                 // Koin
                 implementation("io.insert-koin:koin-core:3.4.0")
+
+                implementation("io.ktor:ktor-client-content-negotiation:$ktor_version")
+
+                implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor_version")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.5.1")
+
+                api("io.github.qdsfdhvh:image-loader:1.6.4")
 
 
             }
@@ -68,6 +74,10 @@ kotlin {
                 api("androidx.core:core-ktx:1.10.1")
                 implementation("io.ktor:ktor-client-android:$ktor_version")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
+
+                implementation("io.ktor:ktor-client-okhttp:$ktor_version")
+
+                implementation("io.coil-kt:coil-compose:2.4.0")
             }
         }
 
