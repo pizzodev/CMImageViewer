@@ -8,11 +8,13 @@ import androidx.compose.ui.layout.ContentScale
 import coil.compose.AsyncImage
 
 @Composable
-fun LoadAsyncImage(randomImageUrl: String) {
-    AsyncImage(
-        model = randomImageUrl,
-        contentScale = ContentScale.Crop,
-        contentDescription = "Dog photo",
-        modifier = Modifier.fillMaxWidth().wrapContentHeight()
-    )
+fun LoadAsyncImage(randomImageUrl: String?) {
+    randomImageUrl?.let {
+        AsyncImage(
+            model = randomImageUrl,
+            contentScale = ContentScale.Crop,
+            contentDescription = "Dog photo",
+            modifier = Modifier.fillMaxWidth().wrapContentHeight()
+        )
+    }
 }

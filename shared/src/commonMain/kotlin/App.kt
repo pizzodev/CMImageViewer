@@ -1,9 +1,11 @@
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.ImageBitmap
 import io.ktor.client.*
 import koin.initKoin
 import ui.MainScreen
 import ui.MainScreenViewModel
+import utils.Platform
 
 @Composable
 fun App() {
@@ -15,8 +17,10 @@ fun App() {
     }
 }
 
-expect fun getPlatformName(): String
+expect fun getPlatform(): Platform
 
 expect fun getApiClient(): HttpClient
 
-expect fun LoadImageFromUrl(randomImageUrl: String)
+expect fun BuildComposeItem(randomImageUrl: String?, imageBitmap: ImageBitmap?)
+
+expect fun byteArrayToImage(byteArray: ByteArray): ImageBitmap?
