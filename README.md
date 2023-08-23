@@ -14,8 +14,8 @@ This is a sample for a [Kotlin Multiplatform] project that uses the [Compose Mul
 
 ### Shared dependencies
 
-* *dev.icerock.moko:mvvm-**: This is a Kotlin Multiplatform library that provides architecture components of Model-View-ViewModel for UI applications. 
-* *io.ktor:ktor-client.**: Provides an end-to-end kotlin multiplatform client for connected applications. 
+* *dev.icerock.moko:mvvm-*: This is a Kotlin Multiplatform library that provides architecture components of Model-View-ViewModel for UI applications. 
+* *io.ktor:ktor-client.*: Provides an end-to-end kotlin multiplatform client for connected applications. 
 * *org.jetbrains.kotlinx:kotlinx-serialization-core*: Kotlin multiplatform JSON serialization *
 * *io.insert-koin:koin-core*: Kotlin multiplatform DI manager
 
@@ -53,6 +53,7 @@ It depends on and uses the `shared` module as a CocoaPods dependency.
 
 ## Modules
 
+```
 androidApp   
 │
 └─── MainActivity.kt + AndroidManifest.xml + Gradle config
@@ -86,6 +87,7 @@ shared
                         utils: utilities
                         │
                         App.kt: Application @Composable start + expected functions
+```
 
 
 
