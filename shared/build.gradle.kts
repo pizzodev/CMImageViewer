@@ -67,7 +67,6 @@ kotlin {
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:$kotlinx_ser_version")
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinx_ser_version")
 
-
                 // Koin
                 implementation("io.insert-koin:koin-core:$koin_version")
 
