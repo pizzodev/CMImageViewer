@@ -1,4 +1,4 @@
-rootProject.name = "ComposeMultiplatformPosts"
+rootProject.name = "CMImageViewer"
 
 include(":androidApp")
 include(":shared")

@@ -1,4 +1,4 @@
-package com.pizzodev.cmposts
+package cm.pizzodev.cmphotoviewer
 
 import MainView
 import android.os.Bundle
