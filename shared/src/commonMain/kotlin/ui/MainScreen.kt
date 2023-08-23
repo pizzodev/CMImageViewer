@@ -54,6 +54,7 @@ fun MainScreen(
             when (getPlatform()) {
                 Platform.iOS -> {
                     LazyVerticalGrid(
+                        modifier = Modifier.padding(top = 40.dp),
                         columns = GridCells.Adaptive(minSize = 128.dp),
                         horizontalArrangement = Arrangement.spacedBy(4.dp),
                         content = {
@@ -65,6 +66,7 @@ fun MainScreen(
                 }
                 Platform.Android -> {
                     LazyVerticalGrid(
+                        modifier = Modifier.padding(top = 40.dp),
                         columns = GridCells.Adaptive(minSize = 128.dp),
                         horizontalArrangement = Arrangement.spacedBy(4.dp),
                         content = {
