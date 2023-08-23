@@ -21,6 +21,7 @@ expect fun getPlatform(): Platform
 
 expect fun getApiClient(): HttpClient
 
+@Composable
 expect fun BuildComposeItem(randomImageUrl: String?, imageBitmap: ImageBitmap?)
 
 expect fun byteArrayToImage(byteArray: ByteArray): ImageBitmap?
