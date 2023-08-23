@@ -1,5 +1,8 @@
 This is a sample for a [Kotlin Multiplatform] project that uses the [Compose Multiplatform] UI framework.
 
+![](readme_images/apps.png) ![](readme_images/tech_stack2.png)
+
+![](readme_images/techstack.png)
 
 ## Dependencies list and usage
 
@@ -77,6 +80,8 @@ shared
                         utils: utilities
                         │
                         App.kt: Application @Composable start + expected functions
+
+
 
 
 
