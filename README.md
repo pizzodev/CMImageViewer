@@ -1,13 +1,13 @@
 This is a sample for a [Kotlin Multiplatform] project that uses the [Compose Multiplatform] UI framework.
 
 <p float="center">
-  <img width="500" alt="Screenshot" src="/readme_images/apps.png">
-  <img width="400" alt="Screenshot" src="/readme_images/cm_multi.png">
+  <img width="400" alt="Screenshot" src="/readme_images/apps.png">
+  <img width="300" alt="Screenshot" src="/readme_images/cm_multi.png">
 </p>
 
 <p float="left">
    <img width="400" alt="Screenshot" src="/readme_images/techstack.png">
-   <img width="500" alt="Screenshot" src="/readme_images/tech_stack2.png">
+   <img width="300" alt="Screenshot" src="/readme_images/tech_stack2.png">
 </p>
 
 ## Dependencies list and usage
